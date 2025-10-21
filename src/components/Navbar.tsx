@@ -259,9 +259,20 @@ export default function Navbar() {
             >
               Contact us
             </a>
-            <button className="primary-button" style={{ marginTop: "auto" }}>
+            <a
+              className="primary-button"
+              style={{
+                marginTop: "auto",
+                display: "inline-block",
+                textAlign: "center",
+                textDecoration: "none",
+              }}
+              href="https://book.squareup.com/appointments/8xsbok9njwyjuu/location/LEW3WR8VCBRG1/services"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Book Now
-            </button>
+            </a>
           </aside>
         </div>
       )}

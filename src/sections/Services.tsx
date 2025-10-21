@@ -33,7 +33,7 @@ const servicesData = [
             name: "Women's Haircut & Blow-Dry",
             price: "40–60",
           },
-          { id: "blowout", name: "Blowout", price: "35–50" },
+          { id: "blowout", name: "Blowout", price: 30 },
           {
             id: "curls-waves",
             name: "Curls/Waves (Flat or Curling Iron)",
@@ -513,11 +513,13 @@ const Services = () => {
                                   }}
                                 >
                                   <div className="item-name">{item.name}</div>
-                                  {Number(item.price) >= 1 ? (
-                                    <div className="item-price">
-                                      ${item.price}
-                                    </div>
-                                  ) : null}
+                                  <div className="item-price">
+                                    $
+                                    {isNaN(Number(item.price)) ||
+                                    item.price === ""
+                                      ? item.price
+                                      : `${item.price}`}
+                                  </div>
                                 </div>
                               );
                             })}

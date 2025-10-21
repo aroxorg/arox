@@ -18,8 +18,15 @@ export default function HeroSection() {
               Experience luxury hair care in the heart of London, Ontario.
               Professional styling, coloring, and treatments that transform.
             </p>
-            <button className="primary-button" style={{ marginTop: "20px" }}>
-              Book Appointment <Lucide.ArrowRight />{" "}
+            <button
+              className="primary-button"
+              style={{ marginTop: "20px" }}
+              onClick={() =>
+                (window.location.href =
+                  "https://book.squareup.com/appointments/8xsbok9njwyjuu/location/LEW3WR8VCBRG1/services")
+              }
+            >
+              Book Appointment <Lucide.ArrowRight />
             </button>
           </div>
 
