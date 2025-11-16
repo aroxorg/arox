@@ -1,6 +1,74 @@
+import { useState } from "react";
 import "./Contact.css";
 
 export default function ContactPage() {
+
+  // State to hold the form input values
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+
+  // State to hold the success/error message for the user
+  const [submitStatus, setSubmitStatus] = useState({
+    message: '',
+    isError: false,
+  });
+
+  // Handle changes in any input field
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  }; 
+
+  // Handle the form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitStatus({ message: 'Sending...', isError: false });
+
+    // The endpoint points to your Vercel serverless function
+    const API_ENDPOINT = '/api/contact'; 
+
+    try {
+      const response = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData), // Send the form data as JSON
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // SUCCESS
+        setSubmitStatus({ 
+          message: data.message, // Uses the success message from the API
+          isError: false 
+        });
+        setFormData({ fullName: '', email: '', subject: '', message: '' }); // Clear form
+      } else {
+        // FAILURE
+        setSubmitStatus({ 
+          message: data.message || 'An unknown server error occurred.', 
+          isError: true 
+        });
+      }
+    } catch (error) {
+    // Log the error to the browser console for debugging
+    console.error("Network Fetch Error:", error); 
+    
+    setSubmitStatus({ 
+        message: 'A network connection error occurred. Check your internet.', 
+        isError: true 
+    });
+}
+  };
+
   return (
     <div className="contact-container" id="contact">
       <div className="contact-content">
@@ -62,32 +130,65 @@ export default function ContactPage() {
               succeed.
             </p>
 
-            <form className="contact-form">
-              <input
-                type="text"
-                placeholder="Full Name"
-                className="form-input"
-              />
-              <input type="email" placeholder="Email" className="form-input" />
-              <input type="text" placeholder="Subject" className="form-input" />
-              <textarea
-                placeholder="Message"
-                className="form-textarea"
-                rows={4}
-              ></textarea>
-              <button
-                type="submit"
-                className="primary-button"
-                style={{
-                  marginTop: "1rem",
-                  textAlign: "center",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                Send a Message
-              </button>
-            </form>
+<form className="contact-form" onSubmit={handleSubmit}>
+      {/* IMPORTANT: Inputs MUST have a 'name' attribute matching the state keys */}
+      <input
+        type="text"
+        placeholder="Full Name"
+        className="form-input"
+        name="fullName"
+        value={formData.fullName}
+        onChange={handleChange}
+        required
+      />
+      <input 
+        type="email" 
+        placeholder="Email" 
+        className="form-input" 
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        required
+      />
+      <input 
+        type="text" 
+        placeholder="Subject" 
+        className="form-input" 
+        name="subject"
+        value={formData.subject}
+        onChange={handleChange}
+        required
+      />
+      <textarea
+        placeholder="Message"
+        className="form-textarea"
+        rows={4}
+        name="message"
+        value={formData.message}
+        onChange={handleChange}
+        required
+      ></textarea>
+      
+      <button
+        type="submit"
+        className="primary-button"
+        style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}
+        disabled={submitStatus.message === 'Sending...'}
+      >
+        {submitStatus.message === 'Sending...' ? 'Sending...' : 'Send a Message'}
+      </button>
+
+      {/* Display the status message */}
+      {submitStatus.message && submitStatus.message !== 'Sending...' && (
+        <p style={{ 
+            marginTop: '1rem', 
+            color: submitStatus.isError ? 'red' : 'green', 
+            fontWeight: 'bold' 
+        }}>
+          {submitStatus.message}
+        </p>
+      )}
+    </form>
           </div>
         </div>
       </div>

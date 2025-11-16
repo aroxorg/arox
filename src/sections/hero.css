@@ -1,6 +1,6 @@
 .hero-section-container {
-   min-height: 100vh;
-   max-height: 1500px;
+   min-height: 1000px;
+   height: 100vh;
    display: flex;
    justify-content: center;
    align-content: center;

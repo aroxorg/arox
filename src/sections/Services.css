@@ -91,7 +91,7 @@
 
 .services-container {
   background-color: var(--primary-color);
-  min-height: 80vh;
+  min-height: 800px;
   display: flex;
   color: #fff;
   position: relative;
