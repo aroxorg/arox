@@ -1,37 +1,51 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 import "./Contact.css";
+// CORRECTED: Import types explicitly using 'import type'
+import type { ChangeEvent, FormEvent, FC } from 'react'; 
 
-export default function ContactPage() {
+// 1. Define the type for the form data
+interface FormData {
+  fullName: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
-  // State to hold the form input values
-  const [formData, setFormData] = useState({
+// 2. Define the type for the API response
+interface ApiResponse {
+  message: string;
+}
+ 
+const ContactPage: FC = () => {
+
+  const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: '',
     subject: '',
     message: '',
   });
 
-  // State to hold the success/error message for the user
   const [submitStatus, setSubmitStatus] = useState({
     message: '',
     isError: false,
   });
 
-  // Handle changes in any input field
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  }; 
+  // 3. Type-safe change handler
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-  // Handle the form submission
-  const handleSubmit = async (e) => {
+  // 4. Handle form submission
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitStatus({ message: 'Sending...', isError: false });
 
-    // The endpoint points to your Vercel serverless function
-    const API_ENDPOINT = '/api/contact'; 
+    // This endpoint must match your serverless function file path (api/contact.cjs)
+    const API_ENDPOINT = '/api/'; 
 
     try {
       const response = await fetch(API_ENDPOINT, {
@@ -39,34 +53,45 @@ export default function ContactPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData), // Send the form data as JSON
+        body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      let data: ApiResponse;
+      try {
+        data = await response.json();
+      } catch (jsonError) {
+        // Handle case where server returns non-JSON (like a default 404 page)
+        console.error("Failed to parse JSON response:", jsonError);
+        setSubmitStatus({ 
+          message: 'Server did not return a valid response. Check your API route.', 
+          isError: true 
+        });
+        return;
+      }
 
       if (response.ok) {
         // SUCCESS
         setSubmitStatus({ 
-          message: data.message, // Uses the success message from the API
+          message: data.message, 
           isError: false 
         });
-        setFormData({ fullName: '', email: '', subject: '', message: '' }); // Clear form
+        // Clear form fields
+        setFormData({ fullName: '', email: '', subject: '', message: '' }); 
       } else {
-        // FAILURE
+        // FAILURE (4xx or 5xx status code)
         setSubmitStatus({ 
-          message: data.message || 'An unknown server error occurred.', 
+          message: data.message || 'An unknown error occurred on the server.', 
           isError: true 
         });
       }
     } catch (error) {
-    // Log the error to the browser console for debugging
-    console.error("Network Fetch Error:", error); 
-    
-    setSubmitStatus({ 
-        message: 'A network connection error occurred. Check your internet.', 
+      // NETWORK ERROR
+      console.error("Network Fetch Error:", error);
+      setSubmitStatus({ 
+        message: 'A network error occurred. Please check your connection.', 
         isError: true 
-    });
-}
+      });
+    }
   };
 
   return (
@@ -131,7 +156,7 @@ export default function ContactPage() {
             </p>
 
 <form className="contact-form" onSubmit={handleSubmit}>
-      {/* IMPORTANT: Inputs MUST have a 'name' attribute matching the state keys */}
+      {/* Ensure all inputs have a 'name' attribute matching the state keys (fullName, email, etc.) */}
       <input
         type="text"
         placeholder="Full Name"
@@ -178,7 +203,7 @@ export default function ContactPage() {
         {submitStatus.message === 'Sending...' ? 'Sending...' : 'Send a Message'}
       </button>
 
-      {/* Display the status message */}
+      {/* Submission Status Message */}
       {submitStatus.message && submitStatus.message !== 'Sending...' && (
         <p style={{ 
             marginTop: '1rem', 
@@ -207,3 +232,6 @@ export default function ContactPage() {
     </div>
   );
 }
+
+
+export default ContactPage;
