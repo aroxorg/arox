@@ -45,7 +45,8 @@ const ContactPage: FC = () => {
     setSubmitStatus({ message: 'Sending...', isError: false });
 
     // This endpoint must match your serverless function file path (api/contact.cjs)
-    const API_ENDPOINT = '/api/'; 
+    const API_ENDPOINT = '/api/contact';
+
 
     try {
       const response = await fetch(API_ENDPOINT, {

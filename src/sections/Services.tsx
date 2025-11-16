@@ -480,7 +480,7 @@ const Services = () => {
                                 boxShadow: "-25px 25px var(--primary-color)",
                               }}
                             ></div>
-
+ 
                             <div
                               className="shape2"
                               style={{
