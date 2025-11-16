@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import "./Contact.css";
 // CORRECTED: Import types explicitly using 'import type'
 import type { ChangeEvent, FormEvent, FC } from 'react'; 
