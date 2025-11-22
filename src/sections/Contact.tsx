@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import  { useState, useEffect } from 'react';
 import "./Contact.css";
 // CORRECTED: Import types explicitly using 'import type'
 import type { ChangeEvent, FormEvent, FC } from 'react'; 
@@ -94,6 +94,17 @@ const ContactPage: FC = () => {
       });
     }
   };
+
+  useEffect(() => {
+  if (!submitStatus.message) return;
+
+  // Add class automatically handled by JSX above
+  const timer = setTimeout(() => {
+    setSubmitStatus({ message: '', isError: false });
+  }, 4000);
+
+  return () => clearTimeout(timer);
+}, [submitStatus.message]);
 
   return (
     <div className="contact-container" id="contact">
@@ -205,15 +216,21 @@ const ContactPage: FC = () => {
       </button>
 
       {/* Submission Status Message */}
-      {submitStatus.message && submitStatus.message !== 'Sending...' && (
-        <p style={{ 
-            marginTop: '1rem', 
-            color: submitStatus.isError ? 'red' : 'green', 
-            fontWeight: 'bold' 
-        }}>
-          {submitStatus.message}
-        </p>
-      )}
+
+{submitStatus.message && submitStatus.message !== 'Sending...' &&
+<div
+  id="alertDiv"
+  className={`alertDiv ${submitStatus.message ? "show" : ""}`}
+  style={{
+    background: submitStatus.isError ? "rgba(94, 0, 0, 0.49)" : "rgba(0, 2, 27, 0.47)",
+    border: submitStatus.isError ? "1px solid rgba(255,0,0,0.25)" : "1px solid rgba(0,128,0,0.18)", 
+    padding: "0.5rem 0.75rem",
+    borderRadius: "4px",
+  }}
+>
+  {submitStatus.message}
+</div>
+}
     </form>
           </div>
         </div>
