@@ -24,63 +24,17 @@ export default function Footer() {
 
       {/* Main Footer Content */}
       <div className="footer-content">
-        {/* <div className="footer-left">
-          <div className="logo">
-            <span className="logo-text">AROX</span>
-          </div>
-          <div className="newsletter">
-            <p className="newsletter-text">Sign up to receive health tips.</p>
-            <div className="newsletter-form">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="email-input"
-              />
-              <button className="submit-btn">Submit</button>
-            </div>
-            <p className="privacy-text">
-              By subscribing you agree to with our Privacy Policy and
-              <br />
-              provide consent to receive updates from our company.
-            </p>
-          </div>
-        </div> */}
-
         <div className="footer-links">
           <div className="link-column">
             <h3 className="column-title">Care Plans</h3>
-            {/* <a href="#" className="footer-link">
-              Sexual Health
-            </a>
-            <a href="#" className="footer-link">
-              Weight Loss
-            </a>
-            <a href="#" className="footer-link">
-              Travel Kit
-            </a> */}
           </div>
 
           <div className="link-column">
             <h3 className="column-title">Learn</h3>
-            {/* <a href="#" className="footer-link">
-              Blogs
-            </a> */}
-            {/* <a href="#" className="footer-link">
-              Research & Education
-            </a>
-            <a href="#" className="footer-link">
-              Certifications
-            </a> */}
           </div>
 
           <div className="link-column">
             <h3 className="column-title">About</h3>
-            {/* <a href="#" className="footer-link">
-              Providers
-            </a>
-            <a href="#" className="footer-link">
-              About Us
-            </a> */}
           </div>
 
           <div className="link-column">
