@@ -17,13 +17,18 @@ export default function Footer() {
           Step into luxury and leave with confidence, no stress attached.
         </p>
         <div className="cta-buttons">
-          <button className="btn-primary">Start Now</button>
+          <a
+            href="https://book.squareup.com/appointments/8xsbok9njwyjuu/location/LEW3WR8VCBRG1/services"
+            className="btn-primary"
+          >
+            Start Now
+          </a>
           <button className="btn-secondary">Contact Us</button>
         </div>
       </div>
 
       {/* Main Footer Content */}
-      <div className="footer-content">
+      {/* <div className="footer-content">
         <div className="footer-links">
           <div className="link-column">
             <h3 className="column-title">Care Plans</h3>
@@ -44,9 +49,9 @@ export default function Footer() {
             </a>
             <a href="#" className="footer-link">
               Contact Us
-            </a> */}
+            </a>  
           </div>
-          {/* 
+        
           <div className="link-column">
             <h3 className="column-title">Legal</h3>
             <a href="#" className="footer-link">
@@ -64,9 +69,9 @@ export default function Footer() {
             <a href="#" className="footer-link">
               Prescription Policy
             </a>
-          </div> */}
+          </div>  
         </div>
-      </div>
+      </div> */}
 
       <div className="footer-bottom">
         <p className="copyright">© 2025 AROX All rights reserved.</p>

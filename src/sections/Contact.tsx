@@ -1,7 +1,7 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import "./Contact.css";
-// CORRECTED: Import types explicitly using 'import type'
-import type { ChangeEvent, FormEvent, FC } from 'react'; 
+import * as Icon from "lucide-react";
+import type { ChangeEvent, FormEvent, FC } from "react";
 
 // 1. Define the type for the form data
 interface FormData {
@@ -15,25 +15,26 @@ interface FormData {
 interface ApiResponse {
   message: string;
 }
- 
-const ContactPage: FC = () => {
 
+const ContactPage: FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    fullName: '',
-    email: '',
-    subject: '',
-    message: '',
+    fullName: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
   const [submitStatus, setSubmitStatus] = useState({
-    message: '',
+    message: "",
     isError: false,
   });
 
   // 3. Type-safe change handler
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
@@ -42,17 +43,16 @@ const ContactPage: FC = () => {
   // 4. Handle form submission
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitStatus({ message: 'Sending...', isError: false });
+    setSubmitStatus({ message: "Sending...", isError: false });
 
     // This endpoint must match your serverless function file path (api/contact.cjs)
-    const API_ENDPOINT = '/api/contact';
-
+    const API_ENDPOINT = "/api/contact";
 
     try {
       const response = await fetch(API_ENDPOINT, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -63,48 +63,49 @@ const ContactPage: FC = () => {
       } catch (jsonError) {
         // Handle case where server returns non-JSON (like a default 404 page)
         console.error("Failed to parse JSON response:", jsonError);
-        setSubmitStatus({ 
-          message: 'Server did not return a valid response. Check your API route.', 
-          isError: true 
+        setSubmitStatus({
+          message:
+            "Server did not return a valid response. Check your API route.",
+          isError: true,
         });
         return;
       }
 
       if (response.ok) {
         // SUCCESS
-        setSubmitStatus({ 
-          message: data.message, 
-          isError: false 
+        setSubmitStatus({
+          message: data.message,
+          isError: false,
         });
         // Clear form fields
-        setFormData({ fullName: '', email: '', subject: '', message: '' }); 
+        setFormData({ fullName: "", email: "", subject: "", message: "" });
       } else {
         // FAILURE (4xx or 5xx status code)
-        setSubmitStatus({ 
-          message: data.message || 'An unknown error occurred on the server.', 
-          isError: true 
+        setSubmitStatus({
+          message: data.message || "An unknown error occurred on the server.",
+          isError: true,
         });
       }
     } catch (error) {
       // NETWORK ERROR
       console.error("Network Fetch Error:", error);
-      setSubmitStatus({ 
-        message: 'A network error occurred. Please check your connection.', 
-        isError: true 
+      setSubmitStatus({
+        message: "A network error occurred. Please check your connection.",
+        isError: true,
       });
     }
   };
 
   useEffect(() => {
-  if (!submitStatus.message) return;
+    if (!submitStatus.message) return;
 
-  // Add class automatically handled by JSX above
-  const timer = setTimeout(() => {
-    setSubmitStatus({ message: '', isError: false });
-  }, 4000);
+    // Add class automatically handled by JSX above
+    const timer = setTimeout(() => {
+      setSubmitStatus({ message: "", isError: false });
+    }, 4000);
 
-  return () => clearTimeout(timer);
-}, [submitStatus.message]);
+    return () => clearTimeout(timer);
+  }, [submitStatus.message]);
 
   return (
     <div className="contact-container" id="contact">
@@ -140,19 +141,20 @@ const ContactPage: FC = () => {
             <div className="info-item">
               <h3>Social network</h3>
               <div className="social-icons">
-                <span className="social-icon">f</span>
-                <span className="social-icon">X</span>
-                <a
-                  className="social-icon"
-                  href="https://www.linkedin.com/posts/azm-technologies_urgent-techabrcloud-freshers-activity-7360998398281379840-JfFU?utm_source=share&utm_medium=member_ios&rcm=ACoAABUBh_0BYonzRYKG44iq961DR0D9GrMRdxc"
-                >
+                <span className="social-icon">
+                  <Icon.Facebook />
+                </span>
+                <span className="social-icon">
+                  <Icon.Instagram />
+                </span>
+                {/* <a className="social-icon" href=" ">
                   in
-                </a>
+                </a> */}
                 <a
                   href="mailTo:Aroxbeauty.salon@gmail.com"
                   className="social-icon"
                 >
-                  @
+                  <Icon.Mail />
                 </a>
               </div>
             </div>
@@ -167,71 +169,82 @@ const ContactPage: FC = () => {
               succeed.
             </p>
 
-<form className="contact-form" onSubmit={handleSubmit}>
-      {/* Ensure all inputs have a 'name' attribute matching the state keys (fullName, email, etc.) */}
-      <input
-        type="text"
-        placeholder="Full Name"
-        className="form-input"
-        name="fullName"
-        value={formData.fullName}
-        onChange={handleChange}
-        required
-      />
-      <input 
-        type="email" 
-        placeholder="Email" 
-        className="form-input" 
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-      />
-      <input 
-        type="text" 
-        placeholder="Subject" 
-        className="form-input" 
-        name="subject"
-        value={formData.subject}
-        onChange={handleChange}
-        required
-      />
-      <textarea
-        placeholder="Message"
-        className="form-textarea"
-        rows={4}
-        name="message"
-        value={formData.message}
-        onChange={handleChange}
-        required
-      ></textarea>
-      
-      <button
-        type="submit"
-        className="primary-button"
-        style={{ marginTop: "1rem", display: "flex", justifyContent: "center" }}
-        disabled={submitStatus.message === 'Sending...'}
-      >
-        {submitStatus.message === 'Sending...' ? 'Sending...' : 'Send a Message'}
-      </button>
+            <form className="contact-form" onSubmit={handleSubmit}>
+              {/* Ensure all inputs have a 'name' attribute matching the state keys (fullName, email, etc.) */}
+              <input
+                type="text"
+                placeholder="Full Name"
+                className="form-input"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                className="form-input"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Subject"
+                className="form-input"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+              />
+              <textarea
+                placeholder="Message"
+                className="form-textarea"
+                rows={4}
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              ></textarea>
 
-      {/* Submission Status Message */}
+              <button
+                type="submit"
+                className="primary-button"
+                style={{
+                  marginTop: "1rem",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+                disabled={submitStatus.message === "Sending..."}
+              >
+                {submitStatus.message === "Sending..."
+                  ? "Sending..."
+                  : "Send a Message"}
+              </button>
 
-{submitStatus.message && submitStatus.message !== 'Sending...' &&
-<div
-  id="alertDiv"
-  className={`alertDiv ${submitStatus.message ? "show" : ""}`}
-  style={{
-    background: submitStatus.isError ? "rgba(94, 0, 0, 0.49)" : "rgba(0, 2, 27, 0.47)",
-    border: submitStatus.isError ? "1px solid rgba(255,0,0,0.25)" : "1px solid rgba(0,128,0,0.18)", 
-    padding: "0.5rem 0.75rem",
-    borderRadius: "4px",
-  }}
->
-  {submitStatus.message}
-</div>
-}
-    </form>
+              {/* Submission Status Message */}
+
+              {submitStatus.message &&
+                submitStatus.message !== "Sending..." && (
+                  <div
+                    id="alertDiv"
+                    className={`alertDiv ${submitStatus.message ? "show" : ""}`}
+                    style={{
+                      background: submitStatus.isError
+                        ? "rgba(94, 0, 0, 0.49)"
+                        : "rgba(0, 2, 27, 0.47)",
+                      border: submitStatus.isError
+                        ? "1px solid rgba(255,0,0,0.25)"
+                        : "1px solid rgba(0,128,0,0.18)",
+                      padding: "0.5rem 0.75rem",
+                      borderRadius: "4px",
+                    }}
+                  >
+                    {submitStatus.message}
+                  </div>
+                )}
+            </form>
           </div>
         </div>
       </div>
@@ -249,7 +262,6 @@ const ContactPage: FC = () => {
       </div>
     </div>
   );
-}
-
+};
 
 export default ContactPage;
