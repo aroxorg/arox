@@ -142,16 +142,30 @@ const ContactPage: FC = () => {
               <h3>Social network</h3>
               <div className="social-icons">
                 <span className="social-icon">
-                  <Icon.Facebook />
+                  <a
+                    target="_blank"
+                    href="https://www.facebook.com/share/17jQzb3Zjh/?mibextid=wwXIfr
+"
+                  >
+                    <Icon.Facebook />
+                  </a>
                 </span>
+
                 <span className="social-icon">
-                  <Icon.Instagram />
+                  <a
+                    target="_blank"
+                    href="https://www.instagram.com/aroxbeauty.salon?igsh=MTRyb3U1Y3hhendvaw=="
+                  >
+                    {" "}
+                    <Icon.Instagram />{" "}
+                  </a>
                 </span>
+
                 {/* <a className="social-icon" href=" ">
                   in
                 </a> */}
                 <a
-                  href="mailTo:Aroxbeauty.salon@gmail.com"
+                  href="mailTo:aroxbeauty.salon@gmail.com"
                   className="social-icon"
                 >
                   <Icon.Mail />
