@@ -10,7 +10,7 @@ import treatment from "/src/assets/images/services/treatment.jpg";
 import chems from "/src/assets/images/services/chems.jpg";
 import manicure from "/src/assets/images/services/manicure.png";
 import peds from "/src/assets/images/services/ped.jpg";
-import lash from "/src/assets/images/services/lash.jpg";
+// import lash from "/src/assets/images/services/lash.jpg";
 import bridal from "/src/assets/images/services/bridal.png";
 import brows from "/src/assets/images/services/brows.jpg";
 import perm from "/src/assets/images/services/perm.jpg";
