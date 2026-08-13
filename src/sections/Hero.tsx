@@ -23,7 +23,7 @@ export default function HeroSection() {
               style={{ marginTop: "20px" }}
               onClick={() =>
                 (window.location.href =
-                  "https://book.squareup.com/appointments/8xsbok9njwyjuu/location/LEW3WR8VCBRG1/services")
+                  "https://www.fresha.com/book-now/arox-beauty-exahgy1l/services?lid=3165445&share=true&pId=3062317")
               }
             >
               Book Appointment <Lucide.ArrowRight />

@@ -116,7 +116,7 @@ const servicesData = [
   {
     id: "nails",
     bgImage: heroImg,
-    name: "Pedicure/Manicure ",
+    name: "Manicure ",
     inTitle: `Our Pedicure Expereince`,
     description: `Pamper your hands and feet with our expert nail and pedicure services.
 `,
@@ -128,32 +128,59 @@ const servicesData = [
         items: [
           { id: "regular-mani", name: "Regular Manicure (Dry)", price: 50 },
           {
+            id: "regular-manipolish",
+            name: "Regular Manicure + polish",
+            price: 65,
+          },
+          {
             id: "shellac-short",
-            name: "Shellac Manicure with Structured Gel - Short",
-            price: 80,
+            name: "Shellac + Dry Manicure - Short",
+            price: 85,
           },
           {
             id: "shellac-medium",
-            name: "Shellac Manicure with Structured Gel - Medium",
-            price: 85,
+            name: "Shellac + Dry Manicure - Medium",
+            price: 90,
           },
-          { id: "gel-overlay-short", name: "Gel Overlay (Short)", price: 85 },
-          { id: "gel-overlay-medium", name: "Gel Overlay (Medium)", price: 90 },
-          { id: "gel-overlay-long", name: "Gel Overlay (Long)", price: 120 },
           {
-            id: "nail-extensions-short",
-            name: "Short (Nail Extensions)",
+            id: "shellac-long",
+            name: "Shellac + Dry Manicure - Long",
             price: 95,
           },
           {
+            id: "hard-gel-overlay-short",
+            name: "Hard Gel Overlay (Short)",
+            price: 90,
+          },
+          {
+            id: "hard-gel-overlay-medium",
+            name: "Hard Gel Overlay (Medium)",
+            price: 100,
+          },
+          {
+            id: "hard-gel-overlay-long",
+            name: "Hard Gel Overlay (Long)",
+            price: 110,
+          },
+          {
+            id: "nail-extensions-short",
+            name: "Short Nail Extensions",
+            price: 120,
+          },
+          {
             id: "nail-extensions-medium",
-            name: "Medium (Nail Extensions)",
-            price: 105,
+            name: "Medium Nail Extensions",
+            price: 130,
           },
           {
             id: "nail-extensions-long",
-            name: "Long (Nail Extensions)",
-            price: 120,
+            name: "Long Nail Extensions",
+            price: 140,
+          },
+          {
+            id: "nail-removal-no-coating",
+            name: "Removing Nails Without Any Coating",
+            price: 20,
           },
         ],
       },
@@ -166,25 +193,70 @@ const servicesData = [
           {
             id: "pedi-regular",
             name: "Pedicure with Regular Polish",
+            price: 85,
+          },
+          {
+            id: "pedi-shellac-toes",
+            name: "Pedicure with Shellac (Toes Only)",
+            price: 85,
+          },
+          {
+            id: "pedi-shellac-feet",
+            name: "Pedicure with Shellac + Feet",
+            price: 100,
+          },
+          {
+            id: "pedi-classic",
+            name: "Classic Pedicure (Cleaning Only)",
             price: 80,
           },
-          { id: "pedi-shellac", name: "Pedicure with Shellac", price: 85 },
-          { id: "pedi-dry", name: "Advanced Dry Pedicure", price: 100 },
+          { id: "nail-repair-single", name: "Repair One Nail", price: 10 },
+          {
+            id: "nail-art-chrome-french",
+            name: "Chrome / French / Simple Design",
+            price: 10,
+          },
         ],
       },
 
-      // {
-      //   id: "Hardware pedicures",
-      //   bgImage: peds,
-      //   name: "Hardware Pedicure",
-      //   items: [
-      //     {
-      //       id: "pedi-shellac",
-      //       name: "Clean. Comfortable. Beautiful. The perfect choice for those who value comfort, hygiene, and flawless results. Using a modern machine with built-in vacuum suction, the dry technique allows for a safe and gentle treatment without soaking. Your feet feel smooth and refreshed, while your nails look neat, healthy, and polished for longer.",
-      //       price: 0,
-      //     },
-      //   ],
-      // },
+      {
+        id: "pedicure-podology",
+        bgImage: peds,
+        name: "Pedicure with Podology Elements",
+        items: [
+          {
+            id: "pedi-professional",
+            name: "Professional Pedicure",
+            price: 100,
+          },
+          {
+            id: "ingrown-nail-treatment-single",
+            name: "Involuted & Ingrown Nail Treatment (1 Toe)",
+            price: 50,
+          },
+          {
+            id: "titanium-unibrace",
+            name: "Titanium Nail Brace / UniBrace",
+            price: 100,
+          },
+          {
+            id: "corn-treatment-pressure-relief",
+            name: "Corn Treatment + Pressure Relief",
+            price: 30,
+          },
+          {
+            id: "nail-fungus-single",
+            name: "Nail Fungus Treatment (1 Nail)",
+            price: 50,
+          },
+          {
+            id: "nail-fungus-all",
+            name: "Nail Fungus Treatment (10 Nails)",
+            price: 150,
+          },
+          { id: "podorepair-nail", name: "Podorepair Nail", price: 50 },
+        ],
+      },
     ],
   },
 
@@ -199,23 +271,23 @@ const servicesData = [
       {
         id: "makeup-services",
         bgImage: bridal, // replace with your actual image import
-        name: "Bridal Trial",
+        name: "Bridal makeup ",
         items: [
           { id: "bridal-trial", name: "Bridal Trial", price: 110 }, // avg of 100–120
           {
             id: "wedding-makeup-bride",
-            name: "Wedding Makeup (Bride)",
-            price: 165,
+            name: "Bridal Makeup (Bride)",
+            price: 180,
           }, // avg of 150–180
           {
-            id: "bridesmaid-mother",
-            name: "Bridesmaid / Mother of the Bride",
-            price: 110,
+            id: "glam",
+            name: "glam Makeup",
+            price: 120,
           }, // avg of 100–120
-          { id: "evening-event", name: "Evening / Event Makeup", price: 110 }, // avg of 100–120
-          { id: "daytime-light", name: "Daytime / Light Makeup", price: 95 }, // avg of 90–100
-          { id: "false-lashes", name: "False Lashes (Optional)", price: 12 }, // avg of 10–15
-          { id: "touch-up-kit", name: "Touch-up Kit", price: 15 }, // included or +$15 → put 15
+          { id: "groom-makeup", name: "Groom Makeup", price: 60 }, // avg of 100–120
+          { id: "photoshoot-makeup", name: "Photoshoot Makeup", price: 120 }, // avg of 90–100
+          { id: "strip-lashes", name: "strip Lashes  ", price: 10 }, // avg of 10–15
+
           { id: "travel-fee", name: "Travel Fee (Outside Salon)", price: 20 }, // starting price
         ],
       },
@@ -318,17 +390,17 @@ const servicesData = [
 const Services = () => {
   const [activeTabId, setActiveTabId] = useState(servicesData[0].id);
   const [activeSubCategoryId, setActiveSubCategoryId] = useState<string | null>(
-    null
+    null,
   );
   // const isActive = activeSubCategoryId === subCategory.id;
 
   const activeService = servicesData.find(
-    (service) => service.id === activeTabId
+    (service) => service.id === activeTabId,
   );
 
   const toggleSubCategory = (subCategoryId: string) => {
     setActiveSubCategoryId((prevId) =>
-      prevId === subCategoryId ? null : subCategoryId
+      prevId === subCategoryId ? null : subCategoryId,
     );
   };
   const tabsNavRef = useRef<HTMLElement>(null); // Ref for the navigation element
@@ -336,7 +408,7 @@ const Services = () => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       const currentIndex = servicesData.findIndex(
-        (service) => service.id === activeTabId
+        (service) => service.id === activeTabId,
       );
       let nextIndex = currentIndex;
 
@@ -480,7 +552,7 @@ const Services = () => {
                                 boxShadow: "-25px 25px var(--primary-color)",
                               }}
                             ></div>
- 
+
                             <div
                               className="shape2"
                               style={{

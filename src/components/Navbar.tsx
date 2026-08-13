@@ -267,7 +267,7 @@ export default function Navbar() {
                 textAlign: "center",
                 textDecoration: "none",
               }}
-              href="https://book.squareup.com/appointments/8xsbok9njwyjuu/location/LEW3WR8VCBRG1/services"
+              href="https://www.fresha.com/book-now/arox-beauty-exahgy1l/services?lid=3165445&share=true&pId=3062317"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -18,7 +18,7 @@ export default function Footer() {
         </p>
         <div className="cta-buttons">
           <a
-            href="https://book.squareup.com/appointments/8xsbok9njwyjuu/location/LEW3WR8VCBRG1/services"
+            href=" https://www.fresha.com/book-now/arox-beauty-exahgy1l/services?lid=3165445&share=true&pId=3062317"
             className="btn-primary"
           >
             Start Now
@@ -26,52 +26,6 @@ export default function Footer() {
           <button className="btn-secondary">Contact Us</button>
         </div>
       </div>
-
-      {/* Main Footer Content */}
-      {/* <div className="footer-content">
-        <div className="footer-links">
-          <div className="link-column">
-            <h3 className="column-title">Care Plans</h3>
-          </div>
-
-          <div className="link-column">
-            <h3 className="column-title">Learn</h3>
-          </div>
-
-          <div className="link-column">
-            <h3 className="column-title">About</h3>
-          </div>
-
-          <div className="link-column">
-            <h3 className="column-title">Support</h3>
-            {/* <a href="#" className="footer-link">
-              FAQ's
-            </a>
-            <a href="#" className="footer-link">
-              Contact Us
-            </a>  
-          </div>
-        
-          <div className="link-column">
-            <h3 className="column-title">Legal</h3>
-            <a href="#" className="footer-link">
-              Terms & Conditions
-            </a>
-            <a href="#" className="footer-link">
-              Privacy Policy
-            </a>
-            <a href="#" className="footer-link">
-              Risk & Benefits
-            </a>
-            <a href="#" className="footer-link">
-              Telehealth Consent
-            </a>
-            <a href="#" className="footer-link">
-              Prescription Policy
-            </a>
-          </div>  
-        </div>
-      </div> */}
 
       <div className="footer-bottom">
         <p className="copyright">© 2025 AROX All rights reserved.</p>

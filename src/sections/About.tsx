@@ -71,7 +71,13 @@ export default function AboutSection() {
           </p>
 
           <div className="about-Buttons">
-            <button className="primary-button">
+            <button
+              onClick={() =>
+                (window.location.href =
+                  "https://www.fresha.com/book-now/arox-beauty-exahgy1l/services?lid=3165445&share=true&pId=3062317")
+              }
+              className="primary-button"
+            >
               Book Now <ArrowRight />
             </button>
             <button className="secondary-button">
