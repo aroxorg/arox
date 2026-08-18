@@ -5,7 +5,7 @@ import ContactPage from "../sections/Contact";
 import Footer from "../sections/Footer";
 import HeroSection from "../sections/Hero";
 import Services from "../sections/Services";
-import TestimonialSection from "../sections/Testimonials";
+// import TestimonialSection from "../sections/Testimonials";
 import "../App.css";
 import TeamSlider from "../sections/TeamSlider";
 
@@ -13,10 +13,10 @@ const Home = () => {
   return (
     <main>
       <HeroSection />
-      <Services />  
+      <Services />
       <AboutSection />
       <TeamSlider />
-      <TestimonialSection />
+      {/* <TestimonialSection /> */}
       <ContactPage />
       <Footer />
     </main>
