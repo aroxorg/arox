@@ -186,7 +186,14 @@ export default function Navbar() {
           </ul>
 
           <div className="nav-actions">
-            <button className="primary-button">Book Now</button>
+            <a
+              href="https://www.fresha.com/book-now/arox-beauty-exahgy1l/services?lid=3165445&share=true&pId=3062317"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="primary-button"
+            >
+              Book Now
+            </a>
           </div>
 
           <div className="breadcrumb-menu">
